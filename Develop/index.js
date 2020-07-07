@@ -4,7 +4,7 @@ const filesystem = require('fs');
 
 const path = require('path');
 
-const generateReadMe = require('./utils/generatereadme')
+const generateReadMe = require('./utils/generatereadme');
 
 
 // array of questions for user
@@ -59,8 +59,13 @@ const questions = [
 ];
 
 // function to write README file
-function writeToFile(fileName, data) { 
-    return filesystem.writeFileSync(path.join(process.cwd(),"README.MD"), data)
+function writeToFile(filename, data) {
+  fs.writeToFile(filename, data, function (err) {
+      if (err) {
+          return console.log(err);
+      }
+      console.log("Successfully created ReadMe!");
+  });
 }
 
 // function to initialize program
